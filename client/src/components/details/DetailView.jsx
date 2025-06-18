@@ -2,14 +2,17 @@ import { useState,useEffect,useContext } from 'react';
 import {Box,styled,Typography} from '@mui/material';
 import Edit from '@mui/icons-material/Edit';
 import Delete from '@mui/icons-material/Delete';
-import {useParams,Link} from 'react-router-dom';
+import {useParams,Link,useNavigate} from 'react-router-dom';
 import {API} from '../../service/api';
 import  detail from '../../assets/detailview.png'
 import { DataContext } from '../../context/DataProvider';
 
-const Container=styled(Box)` 
-    margin: 100px 100px; 
-`
+const Container=styled(Box)(({theme})=>({
+    margin: '50px 100px',
+    [theme.breakpoints.down('md')]: {
+        margin: 0,
+    },
+}))
 const Image=styled('img')({
 
     width: '100%',
@@ -62,6 +65,7 @@ const Description=styled(Typography)`
 const  DetailView=()=>{
     const [post,setPost] = useState({});
 
+        const navigate=useNavigate();
 
     const {id} = useParams();
     // Here you would typically fetch the details using the id
@@ -78,7 +82,14 @@ const  DetailView=()=>{
     }
      fecthData();
    },[])
-
+   const deleteBlog = async () => {
+    let response=await API.deletePost(post._id);
+    if(response.isSuccess){
+     navigate('/'); // Redirect to home page after deletion
+    } else {
+        alert("Failed to delete the blog");
+    }
+   }
 
     return (
         <Container>
@@ -90,7 +101,7 @@ const  DetailView=()=>{
                 <Link to={`/update/${post._id}`
                 }> <EditIcon color='primary' /> </Link>
                
-                 <DeleteIcon color='error' />
+                 <DeleteIcon onClick={()=>deleteBlog()}color='error' />
                 </>
             }
            
