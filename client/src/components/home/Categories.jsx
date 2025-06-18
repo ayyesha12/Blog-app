@@ -4,20 +4,24 @@ import {Link,useSearchParams} from 'react-router-dom';
 
 const StyledTable=styled(Table)`
   border:1px solid rgba(224,224,224,1);
+  margin:10px;
+
+
 
 `
 const StyledButton=styled(Button)`
-   margin:20px;
-   width:85%;
+   margin:10px;
+   width:95%;
    background:#6495ED;
    color:#fff;
    height:50px
 `
 const StyledLink=styled(Link)`
+    font-family: 'Lobster', sans-serif;
    text-decoration:none;
    color:inherit;
-
-  
+   font-size:25px;
+ 
 `
 
 const Categories =()=>{

@@ -5,7 +5,8 @@ import DataProvider from './context/DataProvider'
 import Header from './components/header/Header'
 import Home from './components/home/home'
 import CreatePost from './components/create/CreatePost'
- 
+import DetailView from './components/details/DetailView'
+import UpdatePost from './components/create/Update'
 const PrivateRoute=({isAuthenticated,...props})=>{
   return isAuthenticated ?
   <>
@@ -29,6 +30,8 @@ function App() {
        <Route path='/'element={<Home/>}/>
         
        <Route path='create' element={<CreatePost/>}/>
+       <Route path='details/:id' element={<DetailView/>}/>
+         <Route path='/update/:id' element={<UpdatePost/>}/>
       </Route>
 
       </Routes>

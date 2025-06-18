@@ -105,6 +105,8 @@ const Login = ({isUserAuthenticated}) => {
       setError("Something went wrong,Please try again");
     }
   };
+
+  
   return (
     <Component>
       <Box>
